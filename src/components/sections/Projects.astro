@@ -1,0 +1,80 @@
+---
+// src/components/sections/Projects.astro
+interface Project {
+  title: string;
+  description: string;
+  image: string;
+  tags: string[];
+  status: 'ACTIVE_NODE' | 'OPTIMIZED';
+  statusColor: 'primary' | 'secondary';
+  linkText: string;
+  accent: 'primary' | 'secondary';
+}
+
+const projects: Project[] = [
+  {
+    title: 'Opentraonika',
+    description: 'A cross-platform telemetry dashboard for marine sensor arrays. Built with safety-critical data paths for real-time visualization of NMEA2000 bus traffic.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBqOfwUfEqGbODtHDvJufnwFvTOXs67bz0fgnz4BlknAALmLUai4x_s5IqkeKhMxUgOnvqZ6ONJEIZchceNiAEW9-WjZ4e3WQ0yuR7Mp-tfFYAybKYc38FSwTGvCRxgahj-ru1VsMf26Vs8V-Na3c-KK89tSlAAMid1WvVEG22dCY11h0TQJHhqD72dgY4VdnJA4RJ3j2-PHrOgEe1dF2999xSn3-gG14xjUgmiVXvwQUY_9F4ZsuvzoIvHjA5tdviMkEYGF9ZotlM',
+    tags: ['Rust', 'Vulkan', 'Tauri'],
+    status: 'ACTIVE_NODE',
+    statusColor: 'primary',
+    linkText: 'ACCESS_SOURCE',
+    accent: 'primary'
+  },
+  {
+    title: 'Babilo',
+    description: 'Distributed wireless mesh network protocol for low-power environment monitoring. Implements a custom TSCH mechanism for 99.9% reliability.',
+    image: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAgci3pmqmLRfSFw9RuK6fuy-lQ9pcftUGaWvKuVX_POy-mBcCW7eIxtXGjkiXLWwJO6Naj__NwS2z0FzctyJ9BubbPitGA__CiebaVgMTQIetsSLA2T4oQ-JLBTOxfqs_JUifDpCsSYtb6SZST-0Fu19we2ow4SKgwbMbXyE4-yzfljpvxV9EczQhyg45Htgr32N52CRdMLezelyKoww7yjKbOrjZpu0AicXamYTAI3FSWNWo0rT0N6sDNyyycA_n-fjF2AcKUFiw',
+    tags: ['C++20', 'Zephyr RTOS', '6LoWPAN'],
+    status: 'OPTIMIZED',
+    statusColor: 'secondary',
+    linkText: 'VIEW_ARCHITECTURE',
+    accent: 'secondary'
+  }
+];
+---
+
+<section class="py-24 bg-surface-dim" id="projects">
+  <div class="max-w-container-max mx-auto px-6 md:px-margin">
+    <div class="flex justify-between items-end mb-16">
+      <div>
+        <h2 class="font-headline-md text-headline-md mb-4 uppercase tracking-tighter">LUTGARU_LABS</h2>
+        <p class="font-label-mono text-label-mono text-zinc-500 uppercase">Selected Engineering Works</p>
+      </div>
+      <div class="hidden md:block h-px flex-grow mx-12 bg-zinc-800"></div>
+    </div>
+    
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {projects.map((project) => (
+        <div class="group border border-zinc-800 bg-surface-container overflow-hidden">
+          <div class="relative h-64 bg-zinc-900 overflow-hidden">
+            <img 
+              alt={`${project.title} visualization`} 
+              class="w-full h-full object-cover grayscale opacity-50 group-hover:scale-105 transition-transform duration-700" 
+              src={project.image}
+              width={600} height={400}
+              loading="lazy"
+            />
+            <div class="absolute top-4 right-4 flex gap-2">
+              <span class={`w-3 h-3 rounded-full bg-${project.statusColor} ${project.statusColor === 'primary' ? 'rust-glow' : 'gold-glow'}`}></span>
+              <span class={`font-mono text-[10px] text-${project.statusColor} bg-zinc-950/80 px-2 py-0.5`}>{project.status}</span>
+            </div>
+          </div>
+          <div class="p-8">
+            <h3 class="font-headline-md text-headline-md mb-4">{project.title}</h3>
+            <p class="text-body-base text-on-surface-variant mb-6 leading-relaxed">{project.description}</p>
+            <div class="flex flex-wrap gap-2 mb-8">
+              {project.tags.map((tag) => (
+                <span class="bg-zinc-900 text-zinc-400 px-3 py-1 font-mono text-xs border border-zinc-800">{tag}</span>
+              ))}
+            </div>
+            <a class={`inline-flex items-center gap-2 font-label-mono text-label-mono text-${project.accent} hover:gap-4 transition-all`} href="#">
+              {project.linkText} <span class="material-symbols-outlined">arrow_right_alt</span>
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

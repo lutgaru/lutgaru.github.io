@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  /* Custom colors */
+  --color-background: #131313;
+  --color-surface: #131313;
+  --color-surface-container: #201f1f;
+  --color-surface-dim: #131313;
+  --color-primary: #B7410E;
+  --color-secondary: #D4AF37;
+  --color-on-surface: #e5e2e1;
+  --color-on-surface-variant: #d4c4b5;
+  --color-on-primary: #ffffff;
+  
+  /* Fonts */
+  --font-headline-lg: Inter, sans-serif;
+  --font-label-mono: monospace;
+  --font-body-base: Inter, sans-serif;
+  
+  /* Font sizes */
+  --text-headline-lg: 48px;
+  --text-headline-md: 32px;
+  --text-body-base: 16px;
+  --text-label-mono: 14px;
+  --text-code-sm: 12px;
+}
+
+/* Custom utilities */
+@layer utilities {
+  .grid-lines {
+    background-image: radial-gradient(circle, #2f2722 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+  .rust-glow { box-shadow: 0 0 20px rgba(183, 65, 14, 0.2); }
+  .gold-glow { box-shadow: 0 0 20px rgba(212, 175, 55, 0.2); }
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-15px) scale(1.02); }
+}
+@keyframes orbit {
+  from { transform: rotate(0deg) translateX(140px) rotate(0deg); }
+  to { transform: rotate(360deg) translateX(140px) rotate(-360deg); }
+}
+.levitate { animation: float 6s ease-in-out infinite; }
+.orbit-node { position: absolute; top: 50%; left: 50%; margin: -20px; }
+.orbit-1 { animation: orbit 20s linear infinite; }
+/* ... other orbit classes ... */

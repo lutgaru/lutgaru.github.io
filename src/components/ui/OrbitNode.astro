@@ -1,0 +1,20 @@
+---
+// src/components/ui/OrbitNode.astro
+interface Props {
+  tech: string;
+  color?: 'primary' | 'secondary' | 'default';
+  class?: string;
+}
+
+const { tech, color = 'default', class: className = '' } = Astro.props;
+
+const colorClasses = {
+  primary: 'border-primary text-primary group-hover:text-primary',
+  secondary: 'border-secondary text-secondary group-hover:text-secondary',
+  default: 'border-zinc-700 text-zinc-400'
+};
+---
+
+<div class={`orbit-node ${className} px-3 py-1 bg-zinc-900 border text-[10px] font-mono rounded transition-colors ${colorClasses[color]}`}>
+  {tech}
+</div>

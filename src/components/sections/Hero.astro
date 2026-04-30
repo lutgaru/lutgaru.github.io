@@ -1,0 +1,90 @@
+---
+// src/components/sections/Hero.astro
+import OrbitNode from '../ui/OrbitNode.astro';
+---
+
+<section class="relative min-h-[850px] flex flex-col items-center justify-center px-6 md:px-margin max-w-container-max mx-auto border-x border-zinc-800 overflow-hidden">
+  
+  <!-- Visual Centerpiece -->
+  <div class="relative w-full max-w-xl h-[500px] flex items-center justify-center mb-12">
+    
+    <!-- Orbital Rings -->
+    <div class="absolute w-[280px] h-[280px] border border-zinc-800/50 rounded-full"></div>
+    <div class="absolute w-[340px] h-[340px] border border-zinc-800/30 rounded-full rotate-45"></div>
+    
+    <!-- Orbiting Tech Nodes -->
+    <OrbitNode class="orbit-1" tech="STM32" color="primary" />
+    <OrbitNode class="orbit-2" tech="RUST" color="secondary" />
+    <OrbitNode class="orbit-3" tech="BLE" />
+    <OrbitNode class="orbit-4" tech="GNSS" />
+    <OrbitNode class="orbit-5" tech="CAN" color="primary" />
+    <OrbitNode class="orbit-6" tech="RTOS" />
+    <OrbitNode class="orbit-7" tech="VULKAN" color="secondary" />
+    
+    <!-- Metric Callouts (Desktop) -->
+    <div class="absolute left-0 top-1/4 -translate-x-1/2 md:translate-x-0 text-right hidden lg:block">
+      <h3 class="font-headline-md text-3xl text-primary mb-1">&gt;5,000</h3>
+      <p class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest">Units Deployed</p>
+    </div>
+    <div class="absolute right-0 top-1/4 translate-x-1/2 md:translate-x-0 text-left hidden lg:block">
+      <h3 class="font-headline-md text-3xl text-secondary mb-1">50%</h3>
+      <p class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest">Power Reduction</p>
+    </div>
+    <div class="absolute bottom-10 text-center hidden lg:block">
+      <h3 class="font-headline-md text-3xl text-primary mb-1">33%</h3>
+      <p class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest">Memory Opt.</p>
+    </div>
+    
+    <!-- Central Avatar -->
+    <div class="relative z-10 levitate">
+      <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-primary rust-glow p-1 bg-zinc-950">
+        <img 
+          alt="Senior Embedded Engineer Avatar" 
+          class="w-full h-full object-cover rounded-full" 
+          src="https://lh3.googleusercontent.com/aida/ADBb0ui5BaKjfWGcoyx3fEWhLiSgacyePpGIlZkD9Kzc2N0z87GLZ7aSTj1sMsjUzI4gj_VqEiA2NpYwPSt53b7bFtSmcP78UmTYsnJHdivuSB5ZbtjYurtrYR4KVjTOKo3yvYNwtxHkDBiAEYqXzJFUVSudURZqssU9t-NzzoOwflYE6-9GONOfTrB4EhIAgGNeaIcQYQ9qYHmddaud3VqJYQL6Uqd7cYgSCUhvaOroinNZy_fpmFtnWC_YzW19DlQS_8Q28YnPtKpZTg"
+          width="192" height="192"
+          loading="eager"
+        />
+      </div>
+      <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-background border border-secondary text-secondary font-label-mono text-[10px] uppercase tracking-tighter whitespace-nowrap">
+        STATUS: OPTIMIZED
+      </div>
+    </div>
+  </div>
+  
+  <!-- Description Area -->
+  <div class="text-center z-10 max-w-3xl">
+    <h2 class="font-headline-lg text-headline-lg mb-6 text-on-background leading-tight uppercase tracking-tighter">
+      Architecting <span class="text-secondary">Mission-Critical</span> Systems
+    </h2>
+    <p class="text-body-base text-on-surface-variant max-w-2xl mx-auto mb-10 leading-relaxed">
+      Senior Systems Engineer specializing in production-grade firmware for IoT clusters and marine electronics. Bridging the gap between low-level silicon and scalable cloud infrastructure.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <button class="px-8 py-4 bg-primary text-on-primary font-label-mono text-label-mono uppercase tracking-widest hover:brightness-110 transition-all">
+        DEPLOY_COMMUNICATION
+      </button>
+      <button class="px-8 py-4 border border-zinc-700 text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-zinc-800 transition-all">
+        VIEW_REPOSITORIES
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Mobile Stats -->
+<section class="lg:hidden border-y border-zinc-800 bg-surface-container-lowest py-12 px-6">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+    <div>
+      <h3 class="font-headline-md text-primary mb-1">&gt;5,000</h3>
+      <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">Units Deployed</p>
+    </div>
+    <div>
+      <h3 class="font-headline-md text-secondary mb-1">50%</h3>
+      <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">Power Reduction</p>
+    </div>
+    <div>
+      <h3 class="font-headline-md text-primary mb-1">33%</h3>
+      <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">Memory Opt.</p>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,59 @@
+---
+// src/components/sections/Expertise.astro
+interface ExpertiseCard {
+  icon: string;
+  title: string;
+  tags: string[];
+  accent: 'primary' | 'secondary';
+}
+
+const expertise: ExpertiseCard[] = [
+  {
+    icon: 'router',
+    title: 'CONNECTIVITY',
+    tags: ['BLE', 'GNSS', 'LoRaWAN', 'Cellular_IoT'],
+    accent: 'primary'
+  },
+  {
+    icon: 'settings_input_component',
+    title: 'INDUSTRIAL',
+    tags: ['CAN_BUS', 'MODBUS', 'NMEA2000', 'RS-485'],
+    accent: 'secondary'
+  },
+  {
+    icon: 'memory',
+    title: 'RUNTIME',
+    tags: ['FreeRTOS', 'Zephyr', 'ThreadX', 'Embedded_C++'],
+    accent: 'primary'
+  },
+  {
+    icon: 'developer_board',
+    title: 'HARDWARE',
+    tags: ['STM32', 'nRF52', 'ESP32', 'FPGA_Verilog'],
+    accent: 'secondary'
+  }
+];
+---
+
+<section class="py-24 px-6 md:px-margin max-w-container-max mx-auto border-x border-zinc-800" id="expertise">
+  <div class="mb-16">
+    <h2 class="font-headline-md text-headline-md mb-4 uppercase tracking-tighter">Core_Expertise</h2>
+    <div class="h-1 w-24 bg-secondary"></div>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+    {expertise.map((item) => (
+      <div class={`p-6 bg-surface-container border border-zinc-800 hover:border-${item.accent} transition-colors group`}>
+        <span class={`material-symbols-outlined text-${item.accent} mb-4 text-3xl`}>{item.icon}</span>
+        <h4 class="font-label-mono text-label-mono text-on-surface mb-4">{item.title}</h4>
+        <div class="flex flex-wrap gap-2">
+          {item.tags.map((tag, i) => (
+            <span class={`px-2 py-1 text-[10px] font-mono border border-zinc-700 text-zinc-400 ${i === 0 ? `group-hover:text-${item.accent} transition-colors` : ''}`}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
