@@ -10,18 +10,25 @@ interface Milestone {
 
 const milestones: Milestone[] = [
   {
-    period: '2021 — PRESENT',
+    period: '2022 — PRESENT',
     periodColor: 'primary',
-    title: 'Satellite Ground Station Firmware',
-    description: 'Developed mission-critical control firmware for L-Band satellite transceiver systems. Optimized signal processing pipelines reducing latency.',
-    tags: ['FPGA Integration', 'RTOS Scheduling']
+    title: 'Production Wireless Systems & BLE Architecture',
+    description: 'Designed and deployed multi-role BLE systems for commercial marine electronics (>5,000 units). Defined custom application-layer protocols and OTA update architecture, achieving ~50% power reduction and ~33% memory optimization.',
+    tags: ['BLE Architecture', 'RTOS', 'Embedded Optimization', 'CAN (NMEA 2000)']
   },
   {
-    period: '2019 — 2021',
+    period: '2019 — 2022',
     periodColor: 'secondary',
-    title: 'Marine Link Patent #US1029384',
-    description: 'Primary inventor for a high-resiliency wireless bridge for maritime sensor networks. Covers dynamic frequency hopping algorithms.',
-    tags: ['Intellectual Property', 'RF Engineering']
+    title: 'Satellite Ground Station & IoT Security Research',
+    description: 'Co-deployed a ground station for a Mexican nanosatellite, developing rotor control and UHF/VHF decoding systems. Conducted research on lightweight cryptography for IoT multihop networks on constrained devices.',
+    tags: ['UHF/VHF Systems', 'Embedded Linux', '6LoWPAN', 'IoT Security']
+  },
+  {
+    period: '2018',
+    periodColor: 'primary',
+    title: 'Maritime Wireless Systems Patent (IMPI #430014)',
+    description: 'Co-inventor of a patented wireless communication system with automatic compensation to maintain link integrity under dynamic sea conditions. Contributed to protocol design, firmware, and field validation.',
+    tags: ['RF Systems', 'Wireless Protocols', 'Embedded C', 'Field Testing']
   }
 ];
 ---
