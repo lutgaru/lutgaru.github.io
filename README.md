@@ -1,43 +1,114 @@
-# Astro Starter Kit: Minimal
+# Lutgaru Landing Page
 
-```sh
-npm create astro@latest -- --template minimal
+A modern, responsive landing page built with [Astro](https://astro.build) and [Tailwind CSS](https://tailwindcss.com).
+
+## 🚀 Quick Start
+
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
+
+### Installation
+
+```bash
+npm install
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Development
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm run dev
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+Your site will be running at `http://localhost:3000` by default.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Production Build
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+npm run build
+```
 
-## 🧞 Commands
+### Preview Production Build
 
-All commands are run from the root of the project, from a terminal:
+```bash
+npm run preview
+```
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 📁 Project Structure
 
-## 👀 Want to learn more?
+```
+src/
+├── components/
+│   ├── layout/
+│   │   ├── Header.astro      # Navigation header
+│   │   └── Footer.astro      # Footer section
+│   ├── sections/
+│   │   ├── Hero.astro        # Hero banner section
+│   │   ├── Expertise.astro   # Expertise/services section
+│   │   ├── Projects.astro    # Projects showcase
+│   │   ├── Milestones.astro  # Milestones/achievements
+│   │   └── CTA.astro         # Call-to-action section
+│   └── ui/
+│       └── OrbitNode.astro   # Custom UI component
+├── layouts/
+│   └── BaseLayout.astro      # Base page layout wrapper
+├── pages/
+│   └── index.astro           # Homepage
+└── styles/
+    └── global.css            # Global styles & Tailwind imports
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+public/               # Static assets
+astro.config.mjs     # Astro configuration
+```
+
+## 🎨 Tech Stack
+
+- **Astro** - Static site generation framework
+- **Tailwind CSS** - Utility-first CSS framework
+- **TypeScript** - Type-safe development (via tsconfig.json)
+
+## 🔧 Configuration
+
+### Astro Configuration
+Edit `astro.config.mjs` to customize build settings, integrations, and deployment options.
+
+### Tailwind Configuration
+Tailwind is configured to work with all `.astro`, `.js`, and `.jsx` files in your project. Customize your design tokens in `tailwind.config.js` (if present).
+
+## 📝 Usage
+
+### Creating New Pages
+Add `.astro` files to `src/pages/` to automatically create new routes.
+
+### Creating Components
+Build reusable components in `src/components/` and import them into pages or layouts.
+
+### Styling
+- Use Tailwind utility classes directly in templates
+- Add component-specific styles in `<style>` blocks within `.astro` files
+- Global styles in `src/styles/global.css`
+
+## 🚀 Deployment
+
+### Build Output
+```bash
+npm run build
+```
+
+Static files are generated in the `dist/` directory.
+
+### Deployment Options
+- **Netlify** - Zero-config deployment with `netlify.toml`
+- **Vercel** - Push to deploy with automatic builds
+- **GitHub Pages** - Static hosting
+- **Any static host** - Deploy the `dist/` folder
+
+## 📚 Resources
+
+- [Astro Documentation](https://docs.astro.build)
+- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
+- [Astro Integrations](https://docs.astro.build/en/guides/integrations-guide/)
+
+## 📄 License
+
+MIT
