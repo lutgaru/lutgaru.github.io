@@ -3,6 +3,7 @@
 interface ExpertiseCard {
   icon: string;
   title: string;
+  description: string;
   tags: string[];
   accent: 'primary' | 'secondary';
 }
@@ -10,48 +11,97 @@ interface ExpertiseCard {
 const expertise: ExpertiseCard[] = [
   {
     icon: 'bluetooth',
-    title: 'BLE SYSTEMS & PROTOCOL DESIGN',
+    title: 'BLE Systems',
+    description: 'Protocol design & multi-role architecture',
     tags: ['Multi-role BLE', 'Custom Protocols', 'OTA Updates', 'Low-Latency Comms'],
     accent: 'primary'
   },
   {
     icon: 'bolt',
-    title: 'LOW-POWER & PERFORMANCE',
+    title: 'Low-Power & Performance',
+    description: 'Squeezing every cycle and milliwatt',
     tags: ['Power Optimization', 'Memory Reduction', 'RTOS Tuning', 'Real-Time Constraints'],
     accent: 'secondary'
   },
   {
     icon: 'developer_board',
-    title: 'EMBEDDED SYSTEMS',
+    title: 'Embedded Systems',
+    description: 'Bare-metal to RTOS across major MCUs',
     tags: ['STM32', 'TI CC Series', 'ESP32', 'Embedded C/C++'],
     accent: 'primary'
   },
   {
     icon: 'settings_ethernet',
-    title: 'CONNECTED DEVICES',
-    tags: ['CAN (NMEA 2000)', 'GNSS', 'Wireless Systems', 'IoT Integration'],
+    title: 'Connected Devices',
+    description: 'Field-proven wireless & wired integration',
+    tags: ['CAN / NMEA 2000', 'GNSS', 'Wireless Systems', 'IoT Integration'],
     accent: 'secondary'
   }
 ];
 ---
 
-<section class="py-24 px-6 md:px-margin max-w-container-max mx-auto border-x border-zinc-800" id="expertise">
-  <div class="mb-16">
-    <h2 class="font-headline-md text-headline-md mb-4 uppercase tracking-tighter">Core_Expertise</h2>
-    <p class="text-on-surface-variant max-w-xl mt-4">
-Focused on building production-grade embedded systems with measurable performance and reliability.
-</p>
-    <div class="h-1 w-24 bg-secondary"></div>
+<section
+  class="py-24 px-6 md:px-margin max-w-container-max mx-auto border-x border-zinc-800"
+  id="expertise"
+>
+  <!-- Section header -->
+  <div class="mb-16 flex flex-col gap-4">
+    <h2 class="font-headline-md text-headline-md uppercase tracking-tighter leading-none">
+      Core Expertise
+    </h2>
+    <p class="text-on-surface-variant max-w-lg leading-relaxed">
+      Focused on building production-grade embedded systems with measurable performance and reliability.
+    </p>
+    <div class="h-px w-16 bg-secondary mt-1"></div>
   </div>
-  
+
+  <!-- Cards grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {expertise.map((item) => (
-      <div class={`p-6 bg-surface-container border border-zinc-800 hover:border-${item.accent} transition-colors group`}>
-        <span class={`material-symbols-outlined text-${item.accent} mb-4 text-3xl`}>{item.icon}</span>
-        <h4 class="font-label-mono text-label-mono text-on-surface mb-4">{item.title}</h4>
-        <div class="flex flex-wrap gap-2">
-          {item.tags.map((tag, i) => (
-            <span class={`px-2 py-1 text-[10px] font-mono border border-zinc-700 text-zinc-400 ${i === 0 ? `group-hover:text-${item.accent} transition-colors` : ''}`}>
+    {expertise.map((item, i) => (
+      <div
+        class={`
+          relative flex flex-col gap-6 p-7
+          bg-surface-container border border-zinc-800
+          border-l-2 border-l-zinc-800
+          hover:border-l-${item.accent}
+          hover:border-zinc-700
+          transition-all duration-200 group
+        `}
+      >
+        <!-- Top row: icon + index -->
+        <div class="flex items-start justify-between">
+          <span class={`material-symbols-outlined text-${item.accent} text-3xl`}>
+            {item.icon}
+          </span>
+          <span class="font-mono text-sm text-zinc-600 tabular-nums">
+            {String(i + 1).padStart(2, '0')}
+          </span>
+        </div>
+
+        <!-- Title + description -->
+        <div class="flex flex-col gap-2">
+          <h4 class="font-label-mono text-label-mono text-on-surface uppercase tracking-wide leading-snug">
+            {item.title}
+          </h4>
+          <p class="text-sm font-mono text-zinc-500 leading-relaxed">
+            {item.description}
+          </p>
+        </div>
+
+        <!-- Divider -->
+        <div class="h-px w-full bg-zinc-800 group-hover:bg-zinc-700 transition-colors" />
+
+        <!-- Tags -->
+        <div class="flex flex-wrap gap-2 mt-auto">
+          {item.tags.map((tag) => (
+            <span
+              class={`
+                px-2.5 py-1 font-mono text-xs tracking-wide
+                border border-zinc-800 text-zinc-400
+                group-hover:border-zinc-700 group-hover:text-zinc-300
+                transition-colors
+              `}
+            >
               {tag}
             </span>
           ))}
