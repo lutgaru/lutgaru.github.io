@@ -1,20 +1,65 @@
 ---
-// src/components/ui/OrbitNode.astro
 interface Props {
   tech: string;
   color?: 'primary' | 'secondary' | 'default';
+  orbit: 1 | 2 | 3;
+  angle: number;
   class?: string;
 }
 
-const { tech, color = 'default', class: className = '' } = Astro.props;
+const { tech, color = 'default', orbit, angle, class: className = '' } = Astro.props;
 
 const colorClasses = {
-  primary: 'border-primary text-primary group-hover:text-primary',
-  secondary: 'border-secondary text-secondary group-hover:text-secondary',
-  default: 'border-zinc-700 text-zinc-400'
+  primary:  'border-primary text-primary',
+  secondary:'border-secondary text-secondary',
+  default:  'border-zinc-700 text-zinc-400',
 };
+
+// Orbit speeds — inner faster, outer slower
+const durations = { 1: 18, 2: 28, 3: 40 };
+const radii     = { 1: 140, 2: 180, 3: 220 };
+
+const r        = radii[orbit];
+const duration = durations[orbit];
+// Offset start position so nodes don't all begin at 3 o'clock
+const delay    = -((angle / 360) * duration);
 ---
 
-<div class={`orbit-node ${className} px-3 py-1 bg-zinc-900 border text-[10px] font-mono rounded transition-colors ${colorClasses[color]}`}>
-  {tech}
+<div
+  class={`absolute left-1/2 top-1/2 z-10 ${className}`}
+  style={`
+    --r: ${r}px;
+    --dur: ${duration}s;
+    --delay: ${delay}s;
+    animation: orbit-spin var(--dur) linear var(--delay) infinite;
+  `}
+>
+  <span
+    class={`block px-2.5 py-1 bg-zinc-900 border font-mono text-xs tracking-widest whitespace-nowrap transition-colors hover:bg-zinc-800 ${colorClasses[color]}`}
+    style="animation: counter-spin var(--dur) linear var(--delay) infinite;"
+  >
+    {tech}
+  </span>
 </div>
+
+<style>
+  /*
+    orbit-spin: moves the node in a circle of radius --r around the parent center.
+    counter-spin: rotates the label back so it always reads left-to-right.
+  */
+  @keyframes orbit-spin {
+    from { transform: translate(-50%, -50%) rotate(0deg)   translateX(var(--r)) rotate(0deg);   }
+    to   { transform: translate(-50%, -50%) rotate(360deg) translateX(var(--r)) rotate(0deg);   }
+  }
+
+  @keyframes counter-spin {
+    from { transform: rotate(0deg);    }
+    to   { transform: rotate(-360deg); }
+  }
+
+  /* Pause everything when the parent scene is hovered */
+  .orbit-scene:hover div[style*="orbit-spin"],
+  .orbit-scene:hover span[style*="counter-spin"] {
+    animation-play-state: paused;
+  }
+</style>
