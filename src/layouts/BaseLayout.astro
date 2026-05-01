@@ -7,25 +7,131 @@ import Footer from '../components/layout/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  image?: string; // OG image path (relative to public/)
+  canonical?: string; // Override canonical URL if needed
+  noindex?: boolean; // For draft pages
 }
 
-const { title = 'SYSTEM_ARCHITECT_v1.0 | Senior Embedded Systems Engineer', description = '' } = Astro.props;
+const {
+  title = 'Adrian Sanchez | Senior Embedded Systems Engineer',
+  description = 'Senior Embedded Systems Engineer specializing in BLE, RTOS, low-power firmware & IoT security. 7+ years building wireless systems that ship to production.',
+  image = '/og-image.png', // Create this file in public/
+  canonical,
+  noindex = false
+} = Astro.props;
+
+const siteUrl = 'https://lutgaru.com';
+const finalUrl = canonical || siteUrl + Astro.url.pathname;
+const ogImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
 ---
 
 <!DOCTYPE html>
 <html class="dark" lang="en">
   <head>
+    <!-- 🔹 Core Meta -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
     <meta name="description" content={description} />
+    
+    <!-- 🔹 SEO Controls -->
+    <link rel="canonical" href={finalUrl} />
+    {noindex && <meta name="robots" content="noindex, nofollow" />}
+    {!noindex && <meta name="robots" content="index, follow" />}
+    <meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    
+    <!-- 🔹 Keywords (optional but helpful for niche tech roles) -->
+    <meta name="keywords" content="embedded systems engineer, firmware developer, BLE, RTOS, IoT security, STM32, ESP32, Rust, C++, wireless systems, low-power firmware, Adrian Sanchez, lutgaru" />
+    
+    <!-- 🔹 Author & Contact -->
+    <meta name="author" content="Adrian Sanchez" />
+    <meta name="contact" content="adrianneftali.s@gmail.com" />
+    
+    <!-- 🔹 Favicon & App Icons -->
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
-    <!-- Fonts -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#09090b" />
+    
+    <!-- 🔹 Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={finalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Adrian Sanchez - Embedded Systems Engineer Portfolio" />
+    <meta property="og:site_name" content="Lutgaru" />
+    <meta property="og:locale" content="en_US" />
+    
+    <!-- 🔹 Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={finalUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <meta name="twitter:creator" content="@lutgaru" />
+    <meta name="twitter:site" content="@lutgaru" />
+    
+    <!-- 🔹 Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin />
+    
+    <!-- 🔹 Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet" />
     
-
+    <!-- 🔹 JSON-LD Structured Data (Person Schema) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Adrian Sanchez",
+        "givenName": "Adrian",
+        "familyName": "Sanchez",
+        "alternateName": "lutgaru",
+        "jobTitle": "Senior Embedded Systems Engineer",
+        "url": siteUrl,
+        "image": ogImage,
+        "sameAs": [
+          "https://github.com/lutgaru/",
+          "https://www.linkedin.com/in/adrian-neftali-sanchez/",
+          "https://lutgaru.com"
+        ],
+        "email": "mailto:adrianneftali.s@gmail.com",
+        "worksFor": {
+          "@type": "Organization",
+          "name": "Lutgaru Labs"
+        },
+        "knowsAbout": [
+          "Embedded Systems",
+          "BLE / Bluetooth Low Energy",
+          "RTOS (FreeRTOS, Zephyr)",
+          "C/C++",
+          "Rust",
+          "IoT Security",
+          "STM32",
+          "ESP32",
+          "TI CC Series",
+          "Firmware Optimization",
+          "OTA Updates",
+          "NMEA 2000 / CAN Bus",
+          "GNSS",
+          "Edge AI",
+          "llama.cpp",
+          "Vulkan"
+        ],
+        "hasCredential": {
+          "@type": "EducationalOccupationalCredential",
+          "credentialCategory": "degree",
+          "name": "M.Sc. in Telecommunications",
+          "url": "https://lutgaru.com"
+        },
+        "award": "Patent IMPI #430014: Wireless Communication System for Maritime Environments"
+      }
+    </script>
+    
   </head>
   <body class="bg-background text-on-surface font-body-base selection:bg-primary-container selection:text-on-primary-container">
     <Header />
