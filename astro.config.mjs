@@ -7,6 +7,7 @@ import tailwindcss from '@tailwindcss/vite';
 export default defineConfig({
   integrations: [],
   site: 'https://lutgaru.github.io',
+  base : '/',
   vite: {
     plugins: [tailwindcss()],
   },
