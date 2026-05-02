@@ -1,6 +1,8 @@
 ---
 // src/components/sections/Hero.astro
 import OrbitNode from '../ui/OrbitNode.astro';
+import { Image } from 'astro:assets';
+import AvatarImage from '../../assets/avatar.png';
 
 const nodes = [
   // Orbit 1 — Core Identity
@@ -77,13 +79,14 @@ const nodes = [
     <!-- Central Avatar -->
     <div class="relative z-10 levitate">
       <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-primary rust-glow p-1 bg-zinc-950">
-        <img
+        <Image
+          src={AvatarImage}
           alt="Senior Embedded Engineer Avatar"
           class="w-full h-full object-cover rounded-full"
-          src="https://lh3.googleusercontent.com/aida/ADBb0ui5BaKjfWGcoyx3fEWhLiSgacyePpGIlZkD9Kzc2N0z87GLZ7aSTj1sMsjUzI4gj_VqEiA2NpYwPSt53b7bFtSmcP78UmTYsnJHdivuSB5ZbtjYurtrYR4KVjTOKo3yvYNwtxHkDBiAEYqXzJFUVSudURZqssU9t-NzzoOwflYE6-9GONOfTrB4EhIAgGNeaIcQYQ9qYHmddaud3VqJYQL6Uqd7cYgSCUhvaOroinNZy_fpmFtnWC_YzW19DlQS_8Q28YnPtKpZTg"
-          width="192" height="192"
+          width={192} height={192}
           loading="eager"
         />
+
       </div>
       <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-background border border-secondary text-lime-500 font-label-mono text-[10px] uppercase tracking-tighter whitespace-nowrap">
         RUNTIME: ACTIVE
