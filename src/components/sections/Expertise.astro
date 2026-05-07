@@ -1,42 +1,54 @@
 ---
 // src/components/sections/Expertise.astro
-interface ExpertiseCard {
-  icon: string;
-  title: string;
-  description: string;
-  tags: string[];
-  accent: 'primary' | 'secondary';
-}
-
-const expertise: ExpertiseCard[] = [
+const expertise = [
   {
-    icon: 'bluetooth',
-    title: 'BLE Systems',
-    description: 'Protocol design & multi-role architecture',
-    tags: ['Multi-role BLE', 'Custom Protocols', 'OTA Updates', 'Low-Latency Comms'],
-    accent: 'primary'
+    icon: "bluetooth",
+    title: "Multi-Role BLE Systems",
+    description:
+      "Architecture and custom protocols behind commercially deployed marine products (5,000+ units)",
+    tags: [
+      "Multi-Role BLE",
+      "Custom App Layer",
+      "OAD/OTA",
+      "TI BLE Stack",
+      "Zephyr",
+    ],
+    accent: "primary",
   },
   {
-    icon: 'bolt',
-    title: 'Low-Power & Performance',
-    description: 'Squeezing every cycle and milliwatt',
-    tags: ['Power Optimization', 'Memory Reduction', 'RTOS Tuning', 'Real-Time Constraints'],
-    accent: 'secondary'
+    icon: "bolt",
+    title: "Extreme Low-Power Optimization",
+    description:
+      "Achieved ~50% power reduction and ~33% memory optimization in production firmware",
+    tags: [
+      "Power Profiling",
+      "Memory Footprint",
+      "RTOS Tuning",
+      "Battery Life Extension",
+    ],
+    accent: "secondary",
   },
   {
-    icon: 'developer_board',
-    title: 'Embedded Systems',
-    description: 'Bare-metal to RTOS across major MCUs',
-    tags: ['STM32', 'TI CC Series', 'ESP32', 'Embedded C/C++'],
-    accent: 'primary'
+    icon: "developer_board",
+    title: "Production Embedded Firmware",
+    description: "From bare-metal to RTOS on real shipping hardware",
+    tags: ["STM32", "TI CC26xx", "ESP32", "C/C++", "Bootloaders"],
+    accent: "primary",
   },
   {
-    icon: 'settings_ethernet',
-    title: 'Connected Devices',
-    description: 'Field-proven wireless & wired integration',
-    tags: ['CAN / NMEA 2000', 'GNSS', 'Wireless Systems', 'IoT Integration'],
-    accent: 'secondary'
-  }
+    icon: "sailing",
+    title: "Marine Electronics & Harsh Environments",
+    description:
+      "NMEA 2000 + wireless systems proven under real sea conditions",
+    tags: [
+      "NMEA 2000",
+      "CAN Bus",
+      "GNSS",
+      "Marine Wireless",
+      "Patent Inventor",
+    ],
+    accent: "secondary",
+  },
 ];
 ---
 
@@ -44,69 +56,62 @@ const expertise: ExpertiseCard[] = [
   class="py-24 px-6 md:px-margin max-w-container-max mx-auto border-x border-zinc-800"
   id="expertise"
 >
-  <!-- Section header -->
-  <div class="mb-16 flex flex-col gap-4">
-    <h2 class="font-headline-md text-headline-md uppercase tracking-tighter leading-none">
-      Core Expertise
+  <div class="mb-16">
+    <h2
+      class="font-headline-md text-headline-md uppercase tracking-tighter leading-none mb-3"
+    >
+      What I Actually Ship
     </h2>
-    <p class="text-on-surface-variant max-w-lg leading-relaxed">
-      Focused on building production-grade embedded systems with measurable performance and reliability.
+    <p class="text-on-surface-variant max-w-lg">
+      Focused on production-grade wireless systems and firmware that are already
+      running in the real world.
     </p>
-    <div class="h-px w-16 bg-secondary mt-1"></div>
+    <div class="h-px w-20 bg-secondary mt-6"></div>
   </div>
 
-  <!-- Cards grid -->
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-    {expertise.map((item, i) => (
-      <div
-        class={`
-          relative flex flex-col gap-6 p-7
-          bg-surface-container border border-zinc-800
-          border-l-2 border-l-zinc-800
-          hover:border-l-${item.accent}
-          hover:border-zinc-700
-          transition-all duration-200 group
-        `}
-      >
-        <!-- Top row: icon + index -->
-        <div class="flex items-start justify-between">
-          <span class={`material-symbols-outlined text-${item.accent} text-3xl`}>
-            {item.icon}
-          </span>
-          <span class="font-mono text-sm text-zinc-600 tabular-nums">
-            {String(i + 1).padStart(2, '0')}
-          </span>
-        </div>
-
-        <!-- Title + description -->
-        <div class="flex flex-col gap-2">
-          <h4 class="font-label-mono text-label-mono text-on-surface uppercase tracking-wide leading-snug">
-            {item.title}
-          </h4>
-          <p class="text-sm font-mono text-zinc-500 leading-relaxed">
-            {item.description}
-          </p>
-        </div>
-
-        <!-- Divider -->
-        <div class="h-px w-full bg-zinc-800 group-hover:bg-zinc-700 transition-colors" />
-
-        <!-- Tags -->
-        <div class="flex flex-wrap gap-2 mt-auto">
-          {item.tags.map((tag) => (
+    {
+      expertise.map((item, i) => (
+        <div
+          class={`
+        relative flex flex-col gap-6 p-8 
+        bg-surface-container border border-zinc-800 
+        border-l-4 border-l-zinc-800
+        hover:border-l-${item.accent} hover:border-zinc-700
+        transition-all duration-300 group
+      `}
+        >
+          <div class="flex items-start justify-between">
             <span
-              class={`
-                px-2.5 py-1 font-mono text-xs tracking-wide
-                border border-zinc-800 text-zinc-400
-                group-hover:border-zinc-700 group-hover:text-zinc-300
-                transition-colors
-              `}
+              class={`material-symbols-outlined text-${item.accent} text-4xl`}
             >
-              {tag}
+              {item.icon}
             </span>
-          ))}
+            <span class="font-mono text-sm text-zinc-700 tabular-nums">
+              {String(i + 1).padStart(2, "0")}
+            </span>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-semibold text-white mb-2 tracking-tight">
+              {item.title}
+            </h3>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              {item.description}
+            </p>
+          </div>
+
+          <div class="h-px w-full bg-zinc-800 group-hover:bg-zinc-700 transition-colors mt-auto" />
+
+          <div class="flex flex-wrap gap-2">
+            {item.tags.map((tag) => (
+              <span class="px-3 py-1 text-xs font-mono border border-zinc-800 text-zinc-400 group-hover:text-zinc-300 transition-colors">
+                {tag}
+              </span>
+            ))}
+          </div>
         </div>
-      </div>
-    ))}
+      ))
+    }
   </div>
 </section>
