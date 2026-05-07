@@ -1,149 +1,218 @@
 ---
 // src/components/sections/Hero.astro
-import OrbitNode from '../ui/OrbitNode.astro';
-import { Image } from 'astro:assets';
-import AvatarImage from '../../assets/avatar.png';
+import OrbitNode from "../ui/OrbitNode.astro";
+import { Image } from "astro:assets";
+import AvatarImage from "../../assets/avatar.png";
 
 const nodes = [
   // Orbit 1 — Core Identity
-  { tech: 'BLE', orbit: 1, color: 'primary', angle: 0 },
-  { tech: 'C/C++', orbit: 1, color: 'primary', angle: 72 },
-  { tech: 'RTOS', orbit: 1, color: 'primary', angle: 144 },
-  { tech: 'RUST', orbit: 1, color: 'primary', angle: 216 },
-  { tech: 'OTA', orbit: 1, color: 'primary', angle: 288 },
+  { tech: "BLE", orbit: 1, color: "primary", angle: 0 },
+  { tech: "C/C++", orbit: 1, color: "primary", angle: 72 },
+  { tech: "RTOS", orbit: 1, color: "primary", angle: 144 },
+  { tech: "RUST", orbit: 1, color: "primary", angle: 216 },
+  { tech: "OTA", orbit: 1, color: "primary", angle: 288 },
 
   // Orbit 2 — Systems
-  { tech: 'NMEA2000', orbit: 2, color: 'default', angle: 0 },
-  { tech: 'GNSS', orbit: 2, color: 'default', angle: 45 },
-  { tech: 'STM32', orbit: 2, color: 'default', angle: 90 },
-  { tech: 'TI CC', orbit: 2, color: 'default', angle: 135 },
-  { tech: 'ESP32', orbit: 2, color: 'default', angle: 180 },
-  { tech: 'Vulkan', orbit: 2, color: 'default', angle: 225 }, // ¡Nuevo!
-  { tech: 'Edge AI', orbit: 2, color: 'default', angle: 270 }, // ¡Nuevo!
-  { tech: 'llama.cpp', orbit: 2, color: 'default', angle: 315 }, // ¡Nuevo!
+  { tech: "NMEA2000", orbit: 2, color: "default", angle: 0 },
+  { tech: "GNSS", orbit: 2, color: "default", angle: 45 },
+  { tech: "STM32", orbit: 2, color: "default", angle: 90 },
+  { tech: "TI CC", orbit: 2, color: "default", angle: 135 },
+  { tech: "ESP32", orbit: 2, color: "default", angle: 180 },
+  { tech: "Vulkan", orbit: 2, color: "default", angle: 225 }, // ¡Nuevo!
+  { tech: "Edge AI", orbit: 2, color: "default", angle: 270 }, // ¡Nuevo!
+  { tech: "llama.cpp", orbit: 2, color: "default", angle: 315 }, // ¡Nuevo!
 
   // Orbit 3 — Tools
-  { tech: 'Linux', orbit: 3, color: 'secondary', angle: 0 },
-  { tech: 'Python', orbit: 3, color: 'secondary', angle: 51 },
-  { tech: 'Git', orbit: 3, color: 'secondary', angle: 102 },
-  { tech: 'Docker', orbit: 3, color: 'secondary', angle: 153 },
-  { tech: 'Actions', orbit: 3, color: 'secondary', angle: 204 },
-  { tech: 'Astro', orbit: 3, color: 'secondary', angle: 255 }, // ¡Nuevo!
-  { tech: 'npm', orbit: 3, color: 'secondary', angle: 306 }, // ¡Nuevo!
+  { tech: "Linux", orbit: 3, color: "secondary", angle: 0 },
+  { tech: "Python", orbit: 3, color: "secondary", angle: 51 },
+  { tech: "Git", orbit: 3, color: "secondary", angle: 102 },
+  { tech: "Docker", orbit: 3, color: "secondary", angle: 153 },
+  { tech: "Actions", orbit: 3, color: "secondary", angle: 204 },
+  { tech: "Astro", orbit: 3, color: "secondary", angle: 255 }, // ¡Nuevo!
+  { tech: "npm", orbit: 3, color: "secondary", angle: 306 }, // ¡Nuevo!
 ];
 ---
 
-<section class="relative min-h-[850px] flex flex-col items-center justify-center px-6 md:px-margin max-w-container-max mx-auto border-x border-zinc-800 overflow-hidden">
-  
+<section
+  class="relative min-h-[850px] flex flex-col items-center justify-center px-6 md:px-margin max-w-container-max mx-auto border-x border-zinc-800 overflow-hidden"
+>
   <!-- Visual Centerpiece -->
-  <div class="relative w-[580px] h-[580px] flex items-center justify-center mb-12">
-
+  <div
+    class="relative w-[580px] h-[580px] flex items-center justify-center mb-12"
+  >
     <!-- Orbital Rings (SVG) -->
-    <svg class="absolute inset-0 w-full h-full" viewBox="0 0 580 580" xmlns="http://www.w3.org/2000/svg">
+    <svg
+      class="absolute inset-0 w-full h-full"
+      viewBox="0 0 580 580"
+      xmlns="http://www.w3.org/2000/svg"
+    >
       <!-- Center glow ring -->
-      <circle cx="290" cy="290" r="18"  fill="none" stroke="#3f3f46" stroke-width="1" />
-      <circle cx="290" cy="290" r="4"   fill="#a1a1aa" />
+      <circle
+        cx="290"
+        cy="290"
+        r="18"
+        fill="none"
+        stroke="#3f3f46"
+        stroke-width="1"></circle>
+      <circle cx="290" cy="290" r="4" fill="#a1a1aa"></circle>
       <!-- Ring 1 — solid -->
-      <circle cx="290" cy="290" r="140" fill="none" stroke="#3f3f46" stroke-width="1" />
+      <circle
+        cx="290"
+        cy="290"
+        r="140"
+        fill="none"
+        stroke="#3f3f46"
+        stroke-width="1"></circle>
       <!-- Ring 2 — dashed -->
-      <circle cx="290" cy="290" r="180" fill="none" stroke="#3f3f46" stroke-width="1" stroke-dasharray="4 6" />
+      <circle
+        cx="290"
+        cy="290"
+        r="180"
+        fill="none"
+        stroke="#3f3f46"
+        stroke-width="1"
+        stroke-dasharray="4 6"></circle>
       <!-- Ring 3 — dotted -->
-      <circle cx="290" cy="290" r="220" fill="none" stroke="#27272a" stroke-width="2" stroke-dasharray="2 8" />
+      <circle
+        cx="290"
+        cy="290"
+        r="220"
+        fill="none"
+        stroke="#27272a"
+        stroke-width="2"
+        stroke-dasharray="2 8"></circle>
     </svg>
 
     <!-- Orbit Nodes -->
     {nodes.map((n) => <OrbitNode {...n} />)}
 
     <!-- Metric Callouts (Desktop) -->
-<div class="absolute left-0 top-1/4 -translate-x-15 text-right hidden lg:block">
-  <h3 class="font-headline-md text-3xl text-primary mb-1">7+ Years</h3>
-  <p class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest">
-    Embedded Experience
-  </p>
-</div>
+    <div
+      class="absolute left-0 top-1/4 -translate-x-15 text-right hidden lg:block"
+    >
+      <h3 class="font-headline-md text-3xl text-primary mb-1">7+ Years</h3>
+      <p
+        class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest"
+      >
+        Embedded Experience
+      </p>
+    </div>
 
-<div class="absolute right-0 top-1/4 translate-x-15 text-left hidden lg:block">
-  <h3 class="font-headline-md text-3xl text-secondary mb-1">&gt;5,000</h3>
-  <p class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest">
-    Devices Deployed
-  </p>
-</div>
+    <div
+      class="absolute right-0 top-1/4 translate-x-15 text-left hidden lg:block"
+    >
+      <h3 class="font-headline-md text-3xl text-secondary mb-1">&gt;5,000</h3>
+      <p
+        class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest"
+      >
+        Devices Deployed
+      </p>
+    </div>
 
-<div class="absolute bottom-2 text-center hidden lg:block">
-  <h3 class="font-headline-md text-3xl text-primary mb-1">1 Patent</h3>
-  <p class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest">
-    Wireless Systems (IMPI)
-  </p>
-</div>
+    <div class="absolute bottom-2 text-center hidden lg:block">
+      <h3 class="font-headline-md text-3xl text-primary mb-1">1 Patent</h3>
+      <p
+        class="font-label-mono text-[10px] text-on-surface-variant uppercase tracking-widest"
+      >
+        Wireless Systems (IMPI)
+      </p>
+    </div>
 
     <!-- Central Avatar -->
     <div class="relative z-10 levitate">
-      <div class="w-48 h-48 rounded-full overflow-hidden border-4 border-primary rust-glow p-1 bg-zinc-950">
+      <div
+        class="w-48 h-48 rounded-full overflow-hidden border-4 border-primary rust-glow p-1 bg-zinc-950"
+      >
         <Image
           src={AvatarImage}
           alt="Senior Embedded Engineer Avatar"
           class="w-full h-full object-cover rounded-full"
-          width={192} height={192}
+          width={192}
+          height={192}
           loading="eager"
         />
-
       </div>
-      <div class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-background border border-secondary text-lime-500 font-label-mono text-[10px] uppercase tracking-tighter whitespace-nowrap">
+      <div
+        class="absolute -bottom-2 left-1/2 -translate-x-1/2 px-4 py-1 bg-background border border-secondary text-lime-500 font-label-mono text-[10px] uppercase tracking-tighter whitespace-nowrap"
+      >
         RUNTIME: ACTIVE
       </div>
     </div>
   </div>
 
   <!-- Description Area -->
-<div class="text-center z-10 max-w-3xl">
-  <h2 class="font-headline-lg text-headline-lg mb-6 text-on-background leading-tight uppercase tracking-tighter">
-    Wireless Systems & Firmware <span class="text-secondary">That Ship</span>
-  </h2>
+  <div class="text-center z-10 max-w-3xl">
+    <h2
+      class="font-headline-lg text-headline-lg mb-6 text-on-background leading-tight uppercase tracking-tighter"
+    >
+      Wireless Systems & <span class="text-secondary">Production Firmware</span>
+    </h2>
 
-  <p class="text-body-base text-on-surface-variant max-w-2xl mx-auto mb-4 leading-relaxed">
-    I build embedded systems for real-world devices — from BLE communication to low-power firmware optimization.
-  </p>
+    <p
+      class="text-body-base text-on-surface-variant max-w-2xl mx-auto mb-6 leading-relaxed"
+    >
+      Senior Embedded & Wireless Engineer at <span class="text-secondary"
+        >Navico | Brunswick Corp</span
+      >. Shipping real-world marine products (<span class="text-secondary"
+        >5,000+</span
+      > units) while building high-performance edge systems with Vulkan, AI inference
+      and custom runtimes.
+    </p>
 
-  <p class="text-[11px] font-label-mono text-on-surface-variant uppercase tracking-widest mb-10 opacity-70">
-    M.Sc. Telecommunications • Embedded Systems • IoT Security
-  </p>
+    <p
+      class="text-[11px] font-label-mono text-on-surface-variant uppercase tracking-widest mb-10 opacity-70"
+    >
+      M.Sc. Telecommunications • Patent Inventor • BLE • RTOS • Low-Power
+      Systems
+    </p>
 
-  <div class="flex flex-wrap justify-center gap-4">
-  <!-- Enlace de Correo -->
-  <a 
-    href="mailto:adrianneftali.s@gmail.com" 
-    class="px-8 py-4 bg-primary text-on-primary font-label-mono text-label-mono uppercase tracking-widest hover:brightness-110 transition-all inline-block"
-  >
-    Contact
-  </a>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a
+        href="mailto:adrianneftali.s@gmail.com"
+        class="px-8 py-4 bg-primary text-on-primary font-label-mono text-label-mono uppercase tracking-widest hover:brightness-110 transition-all inline-block"
+      >
+        Get In Touch
+      </a>
 
-  <!-- Enlace a GitHub -->
-  <a 
-    href="https://github.com/lutgaru/" 
-    target="_blank" 
-    rel="noopener noreferrer" 
-    class="px-8 py-4 border border-zinc-700 text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-zinc-800 transition-all inline-block"
-  >
-    View Repositories
-  </a>
-</div>
-</div>
+      <a
+        href="https://github.com/lutgaru/"
+        target="_blank"
+        class="px-8 py-4 border border-zinc-700 text-on-surface font-label-mono text-label-mono uppercase tracking-widest hover:bg-zinc-800 transition-all inline-block"
+      >
+        See My Work
+      </a>
+    </div>
+  </div>
 </section>
 
 <!-- Mobile Stats -->
-<section class="lg:hidden border-y border-zinc-800 bg-surface-container-lowest py-12 px-6">
+<section
+  class="lg:hidden border-y border-zinc-800 bg-surface-container-lowest py-12 px-6"
+>
   <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
     <div>
       <h3 class="font-headline-md text-primary mb-1">7+ Years</h3>
-      <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">Embedded Experience</p>
+      <p
+        class="font-label-mono text-label-mono text-on-surface-variant uppercase"
+      >
+        Embedded Experience
+      </p>
     </div>
     <div>
       <h3 class="font-headline-md text-secondary mb-1">&gt;5,000</h3>
-      <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">Devices Deployed</p>
+      <p
+        class="font-label-mono text-label-mono text-on-surface-variant uppercase"
+      >
+        Devices Deployed
+      </p>
     </div>
     <div>
       <h3 class="font-headline-md text-primary mb-1">1 Patent</h3>
-      <p class="font-label-mono text-label-mono text-on-surface-variant uppercase">Wireless Systems (IMPI)</p>
+      <p
+        class="font-label-mono text-label-mono text-on-surface-variant uppercase"
+      >
+        Wireless Systems (IMPI)
+      </p>
     </div>
   </div>
 </section>
