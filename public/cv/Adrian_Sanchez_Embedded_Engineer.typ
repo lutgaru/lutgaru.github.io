@@ -21,7 +21,7 @@
   ],
   [
     #text(size: 20pt, weight: "bold", fill: primary)[Adrian Neftali Sanchez] \
-    #text(size: 11pt, weight: "medium")[Senior Embedded & Wireless Systems Engineer]
+    #text(size: 11pt, weight: "medium")[Senior Embedded & Wireless Software Engineer]
   ],
   [
     #link("https://www.linkedin.com/in/adrian-neftali-sanchez")[linkedin.com/in/adrian-neftali-sanchez] \
@@ -36,7 +36,7 @@
 #v(-4pt)
 #line(length: 100%, stroke: 0.5pt + gray)
 
-Senior Embedded & Wireless Systems Engineer with 4+ years of hands-on experience architecting production-grade firmware, low-latency software, and local-first Edge AI architectures. Specialized in multi-role BLE, low-power optimization, and systems-level programming in C/C++ and Rust. Co-inventor of a patented maritime wireless link integrity system. Proven track record of delivering up to 50% power reduction across 5,000+ deployed commercial units. Eligible for immediate US employment under the TN/T-MEC visa framework.
+Senior Embedded & Wireless Software Engineer with 6+ years of hands-on experience architecting production-grade firmware, low-latency software, and local-first Edge AI architectures. Specialized in multi-role BLE, low-power optimization, and systems-level programming in C/C++ and Rust. Co-inventor of a patented maritime wireless link integrity system. Proven track record of delivering up to 50% power reduction across 5,000+ deployed commercial units. Eligible for immediate US employment under the TN/T-MEC visa framework.
 
 #v(4pt)
 
@@ -64,7 +64,7 @@ Senior Embedded & Wireless Systems Engineer with 4+ years of hands-on experience
 
 #grid(
   columns: (1fr, auto),
-  [*Senior R&D Engineer – Embedded & Wireless Systems* \ _Navico Group_],
+  [*Senior R&D Engineer – Embedded & Wireless Software* \ _Navico Group_],
   [Jun 2022 — Present]
 )
 #v(2pt)
