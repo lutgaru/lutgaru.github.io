@@ -35,8 +35,7 @@
 #text(weight: "bold", size: 11pt, fill: primary)[Professional Summary]
 #v(-4pt)
 #line(length: 100%, stroke: 0.5pt + gray)
-
-Senior Embedded & Wireless Software Engineer with 6+ years of hands-on experience architecting production-grade firmware, low-latency software, and local-first Edge AI architectures. Specialized in multi-role BLE, low-power optimization, and systems-level programming in C/C++ and Rust. Co-inventor of a patented maritime wireless link integrity system. Proven track record of delivering up to 50% power reduction across 5,000+ deployed commercial units. Eligible for immediate US employment under the TN/T-MEC visa framework.
+Senior Embedded & Wireless Software Engineer with 6+ years of experience building and deploying connected embedded products at scale. Expertise includes multi-MCU architectures, BLE communications, OTA update systems, low-level driver development, power optimization, and firmware reliability in real-world environments. Proven track record of solving complex field issues, improving system performance across 5,000+ deployed units, and delivering production software in C/C++ and Rust. Co-inventor of a patented maritime wireless link integrity system and contributor to Zephyr-based embedded platforms. Eligible for immediate US employment under the TN/T-MEC visa framework.
 
 #v(2pt)
 
@@ -48,10 +47,15 @@ Senior Embedded & Wireless Software Engineer with 6+ years of hands-on experienc
 #grid(
   columns: (auto, 1fr),
   gutter: 4pt,
-  [*Languages & Core:*], [C, C++, Rust, Go, Python, Dart, JavaScript, Shell Scripting],
-  [*Embedded & RTOS:*], [Zephyr RTOS, Bare-Metal, Custom RTOS, Bootloaders, Cross-compilers, Linux Kernel Modules],
+  [*Languages & Core:*], [C, C++, Rust, Go, Python, Dart, JavaScript, Shell Scripting, ARM Cortex-M],
+  [*Embedded & Systems:*],
+  [Embedded Linux, Zephyr RTOS,
+    Bare-Metal Firmware, Bootloaders,
+    ARM-based Systems, Linux Kernel Modules,
+    Cross-compilation, Device Bring-up],
+
   [*Wireless & Protocols:*],
-  [Bluetooth Low Energy (Multi-role), WebSockets (Async), Custom Protocols, CAN (NMEA 2000), SPI, I2C, UART],
+  [Bluetooth Low Energy (Multi-role), WebSockets (Async), Custom Protocols, CAN (NMEA 2000), SPI, I2C, UART, 802.15.4, 802.11],
 
   [*AI & Edge Computing:*],
   [Local Inference, ONNX Runtime, llama.cpp, Vulkan acceleration, VAD (Voice Activity Detection), Audio Streams],
