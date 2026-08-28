@@ -1,4 +1,6 @@
 ---
+const pathname = Astro.url.pathname;
+const isBlog = pathname.startsWith('/blog');
 ---
 
 <style>
@@ -77,10 +79,10 @@
 <nav class="fixed top-0 w-full z-50 flex flex-wrap justify-between items-center px-6 h-14 bg-zinc-950/95 border-b border-zinc-800">
 
   <!-- Logo -->
-  <div class="text-lg font-black tracking-widest text-zinc-100 font-mono">
+  <a href="/" class="text-lg font-black tracking-widest text-zinc-100 font-mono hover:text-white transition-colors">
     Adrian Sanchez
     <span class="text-zinc-500 text-xs ml-2">/ lutgaru</span>
-  </div>
+  </a>
 
   <!-- Hamburger button (mobile only) -->
   <label
@@ -95,11 +97,11 @@
 
   <!-- Nav links -->
   <div class="nav-links">
-    <a class="font-mono uppercase text-xs text-zinc-500 hover:text-zinc-300 transition-colors" href="#expertise">Expertise</a>
-    <a class="font-mono uppercase text-xs text-zinc-500 hover:text-zinc-300 transition-colors" href="#milestones">Experience</a>
-    <a class="font-mono uppercase text-xs text-zinc-500 hover:text-zinc-300 transition-colors" href="#projects">Projects</a>
-    <a class="font-mono uppercase text-xs text-zinc-500 hover:text-zinc-300 transition-colors" href="#contact">Contact</a>
-
+    <a class="font-mono uppercase text-xs text-zinc-500 hover:text-zinc-300 transition-colors" href="/#expertise">Expertise</a>
+    <a class="font-mono uppercase text-xs text-zinc-500 hover:text-zinc-300 transition-colors" href="/#milestones">Experience</a>
+    <a class="font-mono uppercase text-xs text-zinc-500 hover:text-zinc-300 transition-colors" href="/#projects">Projects</a>
+    <a class:list={["font-mono uppercase text-xs transition-colors", isBlog ? "text-secondary" : "text-zinc-500 hover:text-zinc-300"]} href="/blog">Blog</a>
+    <a class="font-mono uppercase text-xs text-zinc-500 hover:text-zinc-300 transition-colors" href="/#contact">Contact</a>
   </div>
 
   <!-- Contact button (desktop only) -->
