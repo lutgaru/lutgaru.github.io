@@ -17,7 +17,8 @@
   [
     #link("mailto:adrianneftali.s@gmail.com")[adrianneftali.s\@gmail.com] \
     (+52) 951-456-2184 \
-    San Diego Area / Ensenada
+    Ensenada B.C. Mexico \
+    (Open to relocation)
   ],
   [
     #text(size: 20pt, weight: "bold", fill: primary)[Adrian Neftali Sanchez] \
@@ -35,7 +36,7 @@
 #text(weight: "bold", size: 11pt, fill: primary)[Professional Summary]
 #v(-4pt)
 #line(length: 100%, stroke: 0.5pt + gray)
-Senior Embedded & Wireless Software Engineer with 6+ years of experience building and deploying connected embedded products at scale. Expertise includes multi-MCU architectures, BLE communications, OTA update systems, low-level driver development, power optimization, and firmware reliability in real-world environments. Proven track record of solving complex field issues, improving system performance across 5,000+ deployed units, and delivering production software in C/C++ and Rust. Co-inventor of a patented maritime wireless link integrity system and contributor to Zephyr-based embedded platforms. Eligible for immediate US employment under the TN/T-MEC visa framework.
+#text(size: 10pt)[Senior Embedded & Wireless Software Engineer with 6+ years of experience building and deploying connected embedded products at scale. Expertise includes multi-MCU architectures, BLE communications, OTA update systems, low-level driver development, power optimization, and firmware reliability in real-world environments. Proven track record of solving complex field issues, improving system performance across 5,000+ deployed units, and delivering production software in C/C++ and Rust. Co-inventor of a patented maritime wireless link integrity system and contributor to Zephyr-based embedded platforms. Eligible for immediate US employment under the TN/T-MEC visa framework.]
 
 #v(2pt)
 
@@ -47,10 +48,10 @@ Senior Embedded & Wireless Software Engineer with 6+ years of experience buildin
 #grid(
   columns: (auto, 1fr),
   gutter: 4pt,
-  [*Languages & Core:*], [C, C++, Rust, Go, Python, Dart, JavaScript, Shell Scripting, ARM Cortex-M],
+  [*Languages & Core:*], [C, C++, Rust, Python, Dart, JavaScript, Shell Scripting, Go, ARM Cortex-M],
   [*Embedded & Systems:*],
   [Embedded Linux, Zephyr RTOS,
-    Bare-Metal Firmware, Bootloaders,
+    Bare-Metal Firmware, Bootloaders, OTA Update Systems,
     ARM-based Systems, Linux Kernel Modules,
     Cross-compilation, Device Bring-up],
 
@@ -61,7 +62,7 @@ Senior Embedded & Wireless Software Engineer with 6+ years of experience buildin
   [Local Inference, ONNX Runtime, llama.cpp, Vulkan acceleration, VAD (Voice Activity Detection), Audio Streams],
 
   [*DevOps & Tooling:*],
-  [Git, CI/CD, GitHub Actions, Docker, Tauri v2, Flutter, eframe, Renode, Logic Analyzers, Oscilloscopes],
+  [Git, CI/CD, GitHub Actions,Jenkins, CMake, Docker, Tauri, Flutter, eframe, Renode, Logic Analyzers, Oscilloscopes],
 )
 
 #v(2pt)
@@ -95,7 +96,7 @@ Senior Embedded & Wireless Software Engineer with 6+ years of experience buildin
 - *Orchestrated global tracking efforts* via SatNOGS network integration, securing critical telemetry after initial mission-critical contact failures.
 - *Implemented a high-gain signal recovery strategy* leveraging the Dwingeloo radio telescope and custom command scripts to successfully establish stable communication.
 - *Maintained full operational control* throughout the mission, facilitating remote camera operations, payload management, and continuous telemetry acquisition until end-of-life.
-#v(2pt)
+#v(40pt)
 
 #grid(
   columns: (1fr, auto),
