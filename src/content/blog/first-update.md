@@ -2,6 +2,7 @@
 title: "Babilo DevLog #1: Building a Cross-Platform Local AI Engine with Vulkan and Rust"
 description: "How we achieved high-performance local inference and full-duplex voice architecture using Tauri, Vulkan, and llama.cpp."
 pubDate: 2026-05-18
+category: "babilo"
 tags: ["rust", "vulkan", "tauri", "llm", "local-ai"]
 ---
 

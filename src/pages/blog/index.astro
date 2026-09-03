@@ -3,78 +3,291 @@ import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const posts = (await getCollection("blog")).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
+
+// Unique categories (project tags) — sorted
+const categories = [...new Set(posts.map((p) => p.data.category))].sort();
+const counts: Record<string, number> = {};
+for (const p of posts)
+  counts[p.data.category] = (counts[p.data.category] ?? 0) + 1;
 ---
 
 <BaseLayout
   title="Blog | Adrian Sanchez — Engineering Log"
   description="Engineering notes, devlogs and learnings — from firmware and Rust to local AI and product building."
 >
-  <section class="max-w-6xl mx-auto px-6 border-x border-zinc-800 py-16 sm:py-24">
+  <section
+    class="max-w-6xl mx-auto px-6 border-x border-zinc-800 py-16 sm:py-24"
+  >
     <header class="mb-10 sm:mb-12">
-      <div class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-secondary mb-4">
+      <div
+        class="inline-flex items-center gap-2 text-[10px] font-mono uppercase tracking-[0.2em] text-secondary mb-4"
+      >
         <span class="w-1.5 h-1.5 rounded-full bg-secondary gold-glow"></span>
-        Blog
+        System_Log // Blog
       </div>
-      <h1 class="text-3xl sm:text-5xl font-black tracking-tighter uppercase text-on-surface leading-none">
+      <h1
+        class="text-3xl sm:text-5xl font-black tracking-tighter uppercase text-on-surface leading-none"
+      >
         Engineering <span class="text-secondary">Log</span>
       </h1>
       <div class="h-1 w-20 bg-primary mt-4"></div>
-      <!-- <p class="text-zinc-400 mt-4 text-sm sm:text-base leading-relaxed max-w-xl">
-        Notes from the lab — firmware, Rust, local AI, and building products that ship.
-        Previously published at <span class="text-zinc-300 font-mono text-xs">babilo.lutgaru.com</span>.
-      </p> -->
     </header>
+
+    {/* Filters — frontend only */}
+    <div id="blog-filters" class="mb-8">
+      <div class="flex items-center gap-2 mb-3">
+        <span
+          class="font-mono text-[10px] uppercase tracking-[0.2em] text-zinc-500"
+          >Filter</span
+        >
+        <span class="h-px flex-1 bg-zinc-800"></span>
+        <button
+          id="filter-copy"
+          class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 hover:text-secondary transition-colors hidden"
+          title="Copy filtered link">Copy link</button
+        >
+      </div>
+      <div class="flex flex-wrap gap-2">
+        <button
+          data-filter="all"
+          class="filter-btn active font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-all bg-primary text-on-primary border-primary"
+          aria-pressed="true"
+        >
+          All <span class="ml-1 opacity-70">({posts.length})</span>
+        </button>
+        {
+          categories.map((cat) => (
+            <button
+              data-filter={cat}
+              class="filter-btn font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-all bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200"
+              aria-pressed="false"
+            >
+              {cat} <span class="ml-1 opacity-60">({counts[cat]})</span>
+            </button>
+          ))
+        }
+      </div>
+      <p
+        id="filter-status"
+        class="font-mono text-[10px] uppercase tracking-widest text-zinc-600 mt-3"
+      >
+      </p>
+    </div>
 
     {
       posts.length === 0 ? (
         <div class="border border-zinc-800 bg-surface-container p-8 text-center">
-          <p class="font-mono text-xs uppercase tracking-widest text-zinc-500">No entries yet — check back soon.</p>
+          <p class="font-mono text-xs uppercase tracking-widest text-zinc-500">
+            No entries yet — check back soon.
+          </p>
         </div>
       ) : (
-        <div class="space-y-px bg-zinc-800 border border-zinc-800">
-          {posts.map((post) => (
-            <article class="bg-background hover:bg-zinc-900 transition-colors group">
-              <a href={`/blog/${post.id}`} class="flex items-start justify-between gap-4 p-6 sm:p-8">
-                <div class="flex-1 min-w-0">
-                  <time class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 tabular-nums">
-                    {post.data.pubDate.toLocaleDateString("en-US", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </time>
-                  <h2 class="text-lg sm:text-xl font-bold text-on-surface mt-2 group-hover:text-primary transition-colors leading-snug">
-                    {post.data.title}
-                  </h2>
-                  <p class="text-zinc-400 mt-2 text-sm leading-relaxed line-clamp-2">
-                    {post.data.description}
-                  </p>
-                  {post.data.tags && (
-                    <div class="mt-4 flex flex-wrap gap-2">
-                      {post.data.tags.map((tag) => (
-                        <span class="px-2.5 py-1 bg-zinc-900 border border-zinc-800 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
-                          #{tag}
-                        </span>
-                      ))}
+        <>
+          <div
+            id="blog-list"
+            class="space-y-px bg-zinc-800 border border-zinc-800"
+          >
+            {posts.map((post) => (
+              <article
+                data-category={post.data.category}
+                data-tags={(post.data.tags ?? []).join(",").toLowerCase()}
+                class="blog-card bg-background hover:bg-zinc-900 transition-colors group"
+              >
+                <a
+                  href={`/blog/${post.id}`}
+                  class="flex items-start justify-between gap-4 p-6 sm:p-8"
+                >
+                  <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap items-center gap-2 mb-2">
+                      <span class="inline-flex items-center gap-1.5 px-2.5 py-1 bg-zinc-900 border border-zinc-800 font-mono text-[10px] uppercase tracking-widest text-secondary">
+                        <span class="w-1.5 h-1.5 rounded-full bg-secondary" />
+                        {post.data.category}
+                      </span>
+                      <time class="font-mono text-[10px] uppercase tracking-widest text-zinc-500 tabular-nums">
+                        {post.data.pubDate.toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </time>
                     </div>
-                  )}
-                </div>
-                <span class="material-symbols-outlined text-zinc-600 group-hover:text-primary transition-colors mt-1 shrink-0 text-xl">
-                  arrow_forward
-                </span>
-              </a>
-            </article>
-          ))}
-        </div>
+                    <h2 class="text-lg sm:text-xl font-bold text-on-surface mt-1 group-hover:text-primary transition-colors leading-snug">
+                      {post.data.title}
+                    </h2>
+                    <p class="text-zinc-400 mt-2 text-sm leading-relaxed line-clamp-2">
+                      {post.data.description}
+                    </p>
+                    {post.data.tags && (
+                      <div class="mt-4 flex flex-wrap gap-2">
+                        {post.data.tags.map((tag) => (
+                          <span class="px-2.5 py-1 bg-zinc-900 border border-zinc-800 font-mono text-[10px] uppercase tracking-widest text-zinc-500">
+                            #{tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  <span class="material-symbols-outlined text-zinc-600 group-hover:text-primary transition-colors mt-1 shrink-0 text-xl">
+                    arrow_forward
+                  </span>
+                </a>
+              </article>
+            ))}
+          </div>
+
+          <div
+            id="blog-empty"
+            class="hidden border border-zinc-800 bg-surface-container p-8 text-center"
+          >
+            <p class="font-mono text-xs uppercase tracking-widest text-zinc-500">
+              No entries for this filter.
+            </p>
+            <button
+              id="clear-filter"
+              class="mt-4 font-mono text-xs uppercase tracking-widest px-4 py-2 border border-zinc-700 text-zinc-300 hover:bg-zinc-800 transition-colors"
+            >
+              Clear filter
+            </button>
+          </div>
+        </>
       )
     }
 
-    <div class="mt-12 flex items-center gap-3 text-[10px] font-mono uppercase tracking-widest text-zinc-600">
+    <div
+      class="mt-12 flex items-center gap-3 text-[10px] font-mono uppercase tracking-widest text-zinc-600"
+    >
       <span class="h-px flex-1 bg-zinc-800"></span>
-      {posts.length} entries
+      <span id="entries-count">{posts.length} entries</span>
       <span class="h-px flex-1 bg-zinc-800"></span>
     </div>
   </section>
+
+  <script is:inline>
+    (() => {
+      const STORAGE_KEY = "blog_tag";
+      const btns = Array.from(document.querySelectorAll(".filter-btn"));
+      const cards = Array.from(document.querySelectorAll(".blog-card"));
+      const list = document.getElementById("blog-list");
+      const empty = document.getElementById("blog-empty");
+      const status = document.getElementById("filter-status");
+      const countEl = document.getElementById("entries-count");
+      const copyBtn = document.getElementById("filter-copy");
+      const clearBtn = document.getElementById("clear-filter");
+
+      if (!btns.length || !cards.length) return;
+
+      const total = cards.length;
+
+      function getParam() {
+        const p = new URLSearchParams(window.location.search);
+        return (p.get("blog_tag") || p.get("tag") || p.get("category") || "")
+          .toLowerCase()
+          .trim();
+      }
+
+      function setParam(tag) {
+        const url = new URL(window.location.href);
+        // normalize to ?tag= for shareable links (also accept blog_tag on read)
+        url.searchParams.delete("blog_tag");
+        url.searchParams.delete("category");
+        if (!tag || tag === "all") {
+          url.searchParams.delete("tag");
+        } else {
+          url.searchParams.set("tag", tag);
+        }
+        history.replaceState(
+          null,
+          "",
+          url.pathname + (url.search ? url.search : "") + url.hash,
+        );
+      }
+
+      function applyFilter(tag, { push = true } = {}) {
+        const t = (tag || "all").toLowerCase();
+        const isAll = t === "all" || !t;
+        let visible = 0;
+
+        cards.forEach((card) => {
+          const cat = (card.dataset.category || "").toLowerCase();
+          const tags = (card.dataset.tags || "")
+            .split(",")
+            .map((s) => s.trim())
+            .filter(Boolean);
+          const show = isAll || cat === t || tags.includes(t);
+          card.classList.toggle("hidden", !show);
+          if (show) visible++;
+        });
+
+        // Toggle list / empty
+        if (list) list.classList.toggle("hidden", visible === 0);
+        if (empty) empty.classList.toggle("hidden", visible !== 0);
+
+        // Update buttons
+        btns.forEach((b) => {
+          const f = (b.dataset.filter || "").toLowerCase();
+          const active = f === (isAll ? "all" : t);
+          b.setAttribute("aria-pressed", String(active));
+          if (active) {
+            b.className =
+              "filter-btn active font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-all bg-primary text-on-primary border-primary";
+          } else {
+            b.className =
+              "filter-btn font-mono text-xs uppercase tracking-widest px-4 py-2 border transition-all bg-zinc-900 border-zinc-800 text-zinc-400 hover:border-zinc-700 hover:text-zinc-200";
+          }
+        });
+
+        // Status + count
+        if (status) {
+          if (isAll) {
+            status.textContent = `${total} entries — showing all`;
+          } else {
+            status.textContent = `${visible} / ${total} entries — filtered by "${t}"`;
+          }
+        }
+        if (countEl) {
+          countEl.textContent = isAll
+            ? `${total} entries`
+            : `${visible} / ${total} entries`;
+        }
+        if (copyBtn) {
+          copyBtn.classList.toggle("hidden", isAll);
+        }
+
+        if (push) setParam(isAll ? null : t);
+      }
+
+      // Click handlers
+      btns.forEach((b) => {
+        b.addEventListener("click", () => applyFilter(b.dataset.filter));
+      });
+      if (clearBtn)
+        clearBtn.addEventListener("click", () => applyFilter("all"));
+      if (copyBtn) {
+        copyBtn.addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText(window.location.href);
+            const orig = copyBtn.textContent;
+            copyBtn.textContent = "Copied!";
+            setTimeout(() => (copyBtn.textContent = orig), 1500);
+          } catch {}
+        });
+      }
+
+      // Init from URL (supports blog_tag, tag, category) — matches category OR topic tags
+      const initial = getParam();
+      if (initial) {
+        applyFilter(initial, { push: false });
+      } else {
+        applyFilter("all", { push: false });
+      }
+
+      // React to back/forward navigation
+      window.addEventListener("popstate", () => {
+        const p = getParam();
+        applyFilter(p || "all", { push: false });
+      });
+    })();
+  </script>
 </BaseLayout>

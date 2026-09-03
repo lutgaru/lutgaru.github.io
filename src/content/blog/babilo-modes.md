@@ -3,6 +3,7 @@
 title: "Babilo DevLog #2: Decoupling Behavior with .babilo.json Modes"
 description: "An inside look at our interchangeable behavior system: why we moved away from hardcoded logic to a schema-driven architecture."
 pubDate: 2026-05-26
+category: "babilo"
 tags: ["rust", "architecture", "learning-modes", "json"]
 ---
 

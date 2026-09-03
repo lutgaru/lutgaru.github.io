@@ -2,6 +2,7 @@
 title: "Babilo DevLog #3: Asynchronous Engines and UX Refinement"
 description: "Moving heavy lifting to background threads, centralizing engine ownership in Rust, and cleaning up the interface."
 pubDate: 2026-05-28
+category: "babilo"
 tags: ["rust", "tauri", "architecture", "ux"]
 ---
 
