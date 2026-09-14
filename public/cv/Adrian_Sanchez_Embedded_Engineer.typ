@@ -89,7 +89,7 @@
 
 #grid(
   columns: (1fr, auto),
-  [*Engineering Services – Satellite Ground Station Deployment* \ _CICESE_], [Mar 2019 — Aug 2019],
+  [*Engineering Services – Satellite Ground Station Deployment* \ _CICESE  Research Center_], [Mar 2019 — Aug 2019],
 )
 #v(1pt)
 - *Led end-to-end commissioning* of a ground station from legacy hardware, developing custom Python/C automation for Gpredict-integrated antenna tracking and signal decoding.
@@ -100,7 +100,7 @@
 
 #grid(
   columns: (1fr, auto),
-  [*Professional Internship – Telecommunications Systems* \ _CICESE_], [Aug 2018 — Dec 2018],
+  [*Professional Internship – Telecommunications Systems* \ _CICESE  Research Center_], [Aug 2018 — Dec 2018],
 )
 #v(1pt)
 - *Co-inventor of Mexican Patent No. 430014*, featuring an automatic link integrity compensation system under dynamic wave-induced motion.
@@ -157,7 +157,7 @@
 
 #grid(
   columns: (1fr, auto),
-  [*M.Sc. in Electronics and Telecommunications* \ _CICESE_], [Aug 2019 — Mar 2022],
+  [*M.Sc. in Electronics and Telecommunications* \ _CICESE  Research Center_], [Aug 2019 — Mar 2022],
 )
 #v(1pt)
 - *Thesis:* Evaluated security-performance trade-offs in IoMT networks by benchmarking 8 NIST Lightweight Cryptography candidates against AES-128.
