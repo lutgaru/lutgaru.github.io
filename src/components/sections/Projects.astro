@@ -4,6 +4,7 @@ interface Project {
   title: string;
   description: string;
   image: string;
+  imageFit?: "cover" | "contain";
   tags: string[];
   status: "ACTIVE_NODE" | "OPTIMIZED";
   statusColor: "primary" | "secondary";
@@ -13,19 +14,6 @@ interface Project {
 }
 
 const projects: Project[] = [
-  {
-    title: "Opentronika",
-    description:
-      "A global co-creation ecosystem for open-source hardware. We bridge the gap between hobbyist makers and professional engineering by providing standardized workflows for collaborative PCB design, firmware development, and hardware documentation.",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuBqOfwUfEqGbODtHDvJufnwFvTOXs67bz0fgnz4BlknAALmLUai4x_s5IqkeKhMxUgOnvqZ6ONJEIZchceNiAEW9-WjZ4e3WQ0yuR7Mp-tfFYAybKYc38FSwTGvCRxgahj-ru1VsMf26Vs8V-Na3c-KK89tSlAAMid1WvVEG22dCY11h0TQJHhqD72dgY4VdnJA4RJ3j2-PHrOgEe1dF2999xSn3-gG14xjUgmiVXvwQUY_9F4ZsuvzoIvHjA5tdviMkEYGF9ZotlM",
-    tags: ["Open-Source", "Embedded Systems", "Git-Ops", "Hardware-Hacking"],
-    status: "ACTIVE_NODE",
-    statusColor: "primary",
-    linkText: "JOIN_THE_LAB", // Cambiado a algo más de "colaboración"
-    accent: "primary",
-    link_to: "https://opentronika.org/en/",
-  },
   {
     title: "Babilo",
     description:
@@ -38,6 +26,32 @@ const projects: Project[] = [
     linkText: "TELL_ME_MORE", // Cambiado a algo más de "colaboración"
     accent: "primary",
     link_to: "https://babilo.lutgaru.com/",
+  },
+  {
+    title: "Sinsajo",
+    description:
+      "Self-hosted real-time voice transcription running 100% local AI. A Flutter client with ML-based voice activity detection streams speech to a Rust server powered by Canary 180M Flash and Parakeet TDT models — ~150-300ms latency with native Spanish support and zero cloud dependency.",
+    image: "/sinsajo.svg",
+    imageFit: "contain",
+    tags: ["Flutter", "Rust", "ONNX", "Speech-to-Text", "Self-Hosted"],
+    status: "ACTIVE_NODE",
+    statusColor: "primary",
+    linkText: "EXPLORE_SINSAJO",
+    accent: "primary",
+    link_to: "https://lutgaru.github.io/Sinsajo/",
+  },
+  {
+    title: "Opentronika",
+    description:
+      "A global co-creation ecosystem for open-source hardware. We bridge the gap between hobbyist makers and professional engineering by providing standardized workflows for collaborative PCB design, firmware development, and hardware documentation.",
+    image:
+      "https://lh3.googleusercontent.com/aida-public/AB6AXuBqOfwUfEqGbODtHDvJufnwFvTOXs67bz0fgnz4BlknAALmLUai4x_s5IqkeKhMxUgOnvqZ6ONJEIZchceNiAEW9-WjZ4e3WQ0yuR7Mp-tfFYAybKYc38FSwTGvCRxgahj-ru1VsMf26Vs8V-Na3c-KK89tSlAAMid1WvVEG22dCY11h0TQJHhqD72dgY4VdnJA4RJ3j2-PHrOgEe1dF2999xSn3-gG14xjUgmiVXvwQUY_9F4ZsuvzoIvHjA5tdviMkEYGF9ZotlM",
+    tags: ["Open-Source", "Embedded Systems", "Git-Ops", "Hardware-Hacking"],
+    status: "ACTIVE_NODE",
+    statusColor: "primary",
+    linkText: "JOIN_THE_LAB", // Cambiado a algo más de "colaboración"
+    accent: "primary",
+    link_to: "https://opentronika.org/en/",
   },
 ];
 ---
@@ -58,14 +72,20 @@ const projects: Project[] = [
       <div class="hidden md:block h-px flex-grow mx-12 bg-zinc-800"></div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+    <div class="flex flex-col gap-12  mx-auto">
       {
         projects.map((project) => (
-          <div class="group border border-zinc-800 bg-surface-container overflow-hidden">
-            <div class="relative h-64 bg-zinc-900 overflow-hidden">
+          <div class="group border border-zinc-800 bg-surface-container overflow-hidden w-full flex flex-col md:flex-row">
+            <div
+              class={`relative h-64 md:h-auto bg-zinc-900 overflow-hidden md:w-[30%] md:shrink-0 ${project.imageFit === "contain" ? "flex items-center justify-center p-10" : ""}`}
+            >
               <img
                 alt={`${project.title} visualization`}
-                class="w-full h-full object-cover grayscale opacity-50 group-hover:scale-105 transition-transform duration-700"
+                class={
+                  project.imageFit === "contain"
+                    ? "h-40 md:h-32 w-auto object-contain group-hover:scale-105 transition-transform duration-700"
+                    : "w-full h-full object-cover grayscale opacity-50 group-hover:scale-105 transition-transform duration-700 md:absolute md:inset-0"
+                }
                 src={project.image}
                 width={600}
                 height={400}
@@ -82,7 +102,7 @@ const projects: Project[] = [
                 </span>
               </div>
             </div>
-            <div class="p-8">
+            <div class="p-8 flex-1 md:flex md:flex-col md:justify-center">
               <h3 class="font-headline-md text-headline-md mb-4">
                 {project.title}
               </h3>
